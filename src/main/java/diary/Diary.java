@@ -1,9 +1,12 @@
 package diary;
 
+import entity.Post;
 import entity.User;
 
 import javax.persistence.NoResultException;
 import java.util.InputMismatchException;
+import java.util.List;
+
 import java.util.Scanner;
 
 public class Diary {
@@ -54,7 +57,25 @@ public class Diary {
                     diary.newPost(user.getId(), title, text);
                 }
                 case 2 -> {
-                    System.out.println(diary.getPosts(user.getId()));
+                    // lista dostępnych wpisów
+                    List<Post> posts =  diary.getPosts(user.getId());
+                    for (Post post : posts
+                         ) {
+                        System.out.println("| "+post.getId()+" | Tytuł: "+post.getTitle());
+                    }
+                    System.out.println("Wpisz nr przyporządkowany wybranemu tytułowi wpisu");
+                    int postId= input.nextInt();
+                    Post post = null;// wpis wyjsciowy (trzymanie miejsca na szukany pozniej post)
+                    for ( Post post2 :posts
+                         ) {
+                        if(post2.getId()==postId){
+                            post = post2;
+                            break;
+                        }
+
+                    }
+                    System.out.println(post.getTitle().toUpperCase()+": \n"+post.getText());
+
 
 
                 }
