@@ -9,7 +9,7 @@ import java.util.List;
 
 import java.util.Scanner;
 
-public class Diary {
+public class MyDiary {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         DAO diary = new DAO();
@@ -32,7 +32,7 @@ public class Diary {
         }
         while (user == null);
 
-        int options = 0;
+        int options;
         do {
             System.out.println("""
                     Podaj co chcesz zrobić:
@@ -74,7 +74,9 @@ public class Diary {
                         }
 
                     }
-                    System.out.println(post.getTitle().toUpperCase()+": \n"+post.getText());
+                    if (post!=null) {
+                        System.out.println(post.getTitle().toUpperCase() + ": \n" + post.getText());
+                    }
 
 
 
